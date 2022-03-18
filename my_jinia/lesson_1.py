@@ -6,7 +6,7 @@ from jinja2 import Template
 # ## строковый комментарий
 
 name = 'Фёдор'
-tm = Template('Привет, {{ name }}')
-msg = tm.render(name=name)
-msg2 = f'Привет {name}'
-print(msg, msg2, sep='\n')
+age = 37
+tm = Template('Привет, мне {{ a }} лет и меня зовут {{ n }}')
+msg = tm.render(n=name, a=age)
+print(msg)
