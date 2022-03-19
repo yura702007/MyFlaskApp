@@ -1,8 +1,8 @@
 from jinja2 import Template
 
-data = """Модуль jinja вместо
+data = """{% raw %}Модуль jinja вместо
 определения {{ name }} 
-подставляет соответствующее значение"""
+подставляет соответствующее значение{% endraw %}"""
 
 tm = Template(data)
 tmg = tm.render(name='Юрий')
