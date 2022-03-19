@@ -1,9 +1,8 @@
 from jinja2 import Template
 
-data = """{% raw %}Модуль jinja вместо
-определения {{ name }} 
-подставляет соответствующее значение{% endraw %}"""
+link = """В HTML-документе ссылки определяются так
+<a href="#">Ссылка</a>"""
 
-tm = Template(data)
-tmg = tm.render(name='Юрий')
+tm = Template('{{ link | e}}')
+tmg = tm.render(link=link)
 print(tmg)
