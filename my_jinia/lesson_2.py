@@ -10,9 +10,9 @@ cities = [
 ]
 
 link = """<select name='cities'>
-{% for c in cities %}
+{% for c in cities -%}
     <option value="{{ c.id }}">{{ c.city }}</option>
-{% endfor %}
+{% endfor -%}
 </select>"""
 
 mg = Template(link)
