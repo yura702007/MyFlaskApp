@@ -7,7 +7,7 @@ cars = [
     {'model': 'Опель', 'price': 21300}
 ]
 
-tpl = "Общая цена автомобилей {{ cs | random }}"
+tpl = " {{ cs | replace('о', 'О') }}"
 tm = Template(tpl)
 msg = tm.render(cs=cars)
 print(msg)
