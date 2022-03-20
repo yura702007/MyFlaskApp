@@ -1,34 +1,36 @@
 from jinja2 import Template
 
 persons = [
-    {'name': 'Алексей', 'age': 18, 'weight': 78.5},
-    {'name': 'Николай', 'age': 28, 'weight': 82.3},
-    {'name': 'Иван', 'age': 33, 'weight': 94.0},
+    {'name': 'Алексей', 'old': 18, 'weight': 78.5},
+    {'name': 'Николай', 'old': 28, 'weight': 82.3},
+    {'name': 'Иван', 'old': 33, 'weight': 94.0},
 ]
 
 html_tm = '''
 {%- macro list_users(list_of_users) -%}
 <ul>
 {%- for u in list_of_users %}
-    <li>{{ u.name }}</li>
+    <li>{{ u.name }}</li> {{ caller(u) }}
 {%- endfor %}
 </ul>
 {% endmacro -%}
 
-{{list_users(users)}}
+{% call(user) list_users(users) %}
+    <ul>
+        <li>Возраст: {{ user.age }}</li>
+        <li>Вес: {{ user.weight }}</li>
+    </ul>
+{%- endcall %}
 '''
 
 tm = Template(html_tm)
 msg = tm.render(users=persons)
 print(msg)
 '''
-{% macro list_users(list_of_user) -%}
-<ul>
-{% for u in users -%}
-    <li>{{u.name}} 
-{%- endfor %}
-</ul>
-{%- endmacro %}
-
-{{list_users(users)}}
+{% call(user) list_users(users) %}
+    <ul>
+    <li>Возраст: {{ user.age }}</li>
+    <li>Вес: {{ user.weight }}</li>
+    </ul>
+{% endcall %}
 '''
