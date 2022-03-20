@@ -7,7 +7,9 @@ cars = [
     {'model': 'Опель', 'price': 21300}
 ]
 
-tpl = " {{ cs | replace('о', 'О') }}"
+tpl = """{% for c in cs -%}
+{% filter upper %}{{ c.model }}{% endfilter %}
+{% endfor -%}"""
 tm = Template(tpl)
 msg = tm.render(cs=cars)
 print(msg)
