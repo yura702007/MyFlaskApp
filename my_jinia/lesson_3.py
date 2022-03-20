@@ -26,11 +26,3 @@ html_tm = '''
 tm = Template(html_tm)
 msg = tm.render(users=persons)
 print(msg)
-'''
-{% call(user) list_users(users) %}
-    <ul>
-    <li>Возраст: {{ user.age }}</li>
-    <li>Вес: {{ user.weight }}</li>
-    </ul>
-{% endcall %}
-'''
