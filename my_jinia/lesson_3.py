@@ -1,15 +1,15 @@
 from jinja2 import Template
 
-cars = [
-    {'model': 'Ауди', 'price': 23000},
-    {'model': 'Шкода', 'price': 17300},
-    {'model': 'Вольво', 'price': 44300},
-    {'model': 'Опель', 'price': 21300}
-]
+html_tm = '''
+{%- macro input(name, value='', type='text', size=50) -%}
+    <input type="{{ type }}" name="{{ name }}" value="{{ value|e }}" size="{{ size }}">
+{%- endmacro -%}
 
-tpl = """{% for c in cs -%}
-{% filter upper %}{{ c.model }}{% endfilter %}
-{% endfor -%}"""
-tm = Template(tpl)
-msg = tm.render(cs=cars)
+<p>{{ input('username') }}</p>
+<p>{{ input('email') }}</p>
+<p>{{ input('password') }}</p>
+'''
+
+tm = Template(html_tm)
+msg = tm.render()
 print(msg)
