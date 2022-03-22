@@ -1,9 +1,9 @@
-{% import 'dialog.html' as dlg%}
+{% from 'dialog.html' import dialog_1 as dlg%}
 <main>
     <p>Content</p>
     <p>Content</p>
     <p>Content</p>
     <p>Content</p>
     <p>Content</p>
-    {{ dlg.dialog_1('Внимание', 'Это текстовый диалог') }}
+    {{ dlg('Внимание', 'Это текстовый диалог') }}
 </main>
