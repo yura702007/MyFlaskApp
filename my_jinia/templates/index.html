@@ -5,8 +5,15 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-{% block content%}
+{%- block content -%}
 <p>Блок контента</p>
-{% endblock %}
+{% block table_content -%}
+<ul>
+    {%- for li in list_table %}
+    <li>{{ li }}</li>
+    {%- endfor %}
+</ul>
+    {%- endblock table_content -%}
+{%- endblock -%}
 </body>
 </html>
