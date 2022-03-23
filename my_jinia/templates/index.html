@@ -10,7 +10,7 @@
 {% block table_content -%}
 <ul>
     {%- for li in list_table %}
-    <li>{% block item %}{{ li }}{% endblock %}</li>
+    <li>{% block item scoped %}{{ li }}{% endblock %}</li>
     {%- endfor %}
 </ul>
     {%- endblock table_content -%}
