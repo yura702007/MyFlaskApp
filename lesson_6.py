@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 
 MENU = [{"name": "Установка", "url": "install-flask"},
         {"name": "Первое приложение", "url": "first-app"},
