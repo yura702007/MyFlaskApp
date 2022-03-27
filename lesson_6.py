@@ -21,7 +21,12 @@ def about():
 @app.route('/contact', methods=['POST', 'GET'])
 def contact():
     if request.method == 'POST':
-        print(request.form)
+        answer = request.form['username']
+        if len(answer) > 2:
+            flash('Сообщение отправлено')
+        else:
+            flash('УУпссс... Произошла ошибка :(')
+        print(answer)
     return render_template('contact.html',  title='Обратная связь', menu=MENU)
 
 
