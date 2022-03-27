@@ -30,5 +30,11 @@ def contact():
     return render_template('contact.html',  title='Обратная связь', menu=MENU)
 
 
+@app.errorhandler(404)
+def page_not_found(error):
+    title = 'Страница не найдена'
+    return render_template('page404.html', title=title, menu=MENU)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
