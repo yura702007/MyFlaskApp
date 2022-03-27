@@ -15,10 +15,10 @@ def index():
 @app.route('/about')
 def about():
     print(url_for('about'))
-    return render_template('about.html',  title='О сайте', menu=MENU)
+    return render_template('about.html', title='О сайте', menu=MENU)
 
 
-@app.route('/profile/<username>')
+@app.route('/profile/<path:username>')  # int, float
 def profile(username):
     return f'Пользователь - {username}'
 
