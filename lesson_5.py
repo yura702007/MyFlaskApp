@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 MENU = [{"name": "Установка", "url": "install-flask"},
         {"name": "Первое приложение", "url": "first-app"},
@@ -18,8 +18,10 @@ def about():
     return render_template('about.html',  title='О сайте', menu=MENU)
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['POST', 'GET'])
 def contact():
+    if request.method == 'POST':
+        print(request.form)
     return render_template('contact.html',  title='Обратная связь', menu=MENU)
 
 
