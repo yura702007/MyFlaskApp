@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 
-MENU = ['Установка', 'Первое приложение', 'Обратная связь']
+MENU = [{"name": "Установка", "url": "install-flask"},
+        {"name": "Первое приложение", "url": "first-app"},
+        {"name": "Обратная связь", "url": "contact"}]
 
 app = Flask(__name__)
 
