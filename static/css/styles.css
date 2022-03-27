@@ -36,12 +36,12 @@ ul.mainmenu li {
 
 ul.mainmenu li.last {float: right;}
 
-ul.mainmenu li.a {
+ul.mainmenu li a {
 	color: #fdc073;
 	text-decoration: none;
 }
 
-ul.mainmenu li.a:hover {color: #FDA83D;}
+ul.mainmenu li a:hover {color: #FDA83D;}
 
 div.content {
 	margin: 10px;

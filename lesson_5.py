@@ -18,5 +18,10 @@ def about():
     return render_template('about.html',  title='О сайте', menu=MENU)
 
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html',  title='Обратная связь', menu=MENU)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
