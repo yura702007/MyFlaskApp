@@ -6,6 +6,8 @@ MENU = [{"name": "Установка", "url": "install-flask"},
 
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = 'qAWYdkSa9Of8hMXG'
+
 
 @app.route('/')
 @app.route('/index')
@@ -21,12 +23,10 @@ def about():
 @app.route('/contact', methods=['POST', 'GET'])
 def contact():
     if request.method == 'POST':
-        answer = request.form['username']
-        if len(answer) > 2:
+        if len(request.form['username']) > 2:
             flash('Сообщение отправлено')
         else:
             flash('УУпссс... Произошла ошибка :(')
-        print(answer)
     return render_template('contact.html',  title='Обратная связь', menu=MENU)
 
 
