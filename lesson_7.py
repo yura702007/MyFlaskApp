@@ -33,7 +33,7 @@ def contact():
 @app.errorhandler(404)
 def page_not_found(error):
     title = 'Страница не найдена'
-    return render_template('page404.html', title=title, menu=MENU)
+    return render_template('page404.html', title=title, menu=MENU), 404
 
 
 if __name__ == '__main__':
