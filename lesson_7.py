@@ -46,5 +46,10 @@ def login():
     return render_template('login.html', title='Авторизация', menu=MENU)
 
 
+@app.route('/profile/<username>')
+def profile(username):
+    return f'Профиль пользователя {username}'
+
+
 if __name__ == '__main__':
     app.run(debug=True)
