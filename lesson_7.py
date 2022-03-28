@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, session, redirect, url_for
 
 MENU = [{"name": "Установка", "url": "install-flask"},
         {"name": "Первое приложение", "url": "first-app"},
@@ -34,6 +34,8 @@ def contact():
 def page_not_found(error):
     title = 'Страница не найдена'
     return render_template('page404.html', title=title, menu=MENU), 404
+
+
 
 
 if __name__ == '__main__':
