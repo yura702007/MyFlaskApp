@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block content -%}
+{{ super() }}
+<form action="/login" method="post" class="contact">
+    <p><label>Имя: </label><input type="text" name="username" value="" required></p>
+    <p><label>Пароль: </label><input type="password" name="email" value="" required></p>
+    <p><input type="submit" value="Отправить"></p>
+</form>
+{% endblock %}
