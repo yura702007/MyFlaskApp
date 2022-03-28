@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, session, redirect, url_for
+from flask import Flask, render_template, request, flash, session, redirect, url_for, abort
 
 MENU = [{"name": "Установка", "url": "install-flask"},
         {"name": "Первое приложение", "url": "first-app"},
@@ -48,6 +48,8 @@ def login():
 
 @app.route('/profile/<username>')
 def profile(username):
+    if 'user_logged' not in session or session['user_logged'] != username:
+        abort(401)
     return f'Профиль пользователя {username}'
 
 
