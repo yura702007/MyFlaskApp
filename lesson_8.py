@@ -26,7 +26,10 @@ def connect_db():
 
 
 def create_db():
-    """create tables in database"""
+    """
+    create tables in database
+    export in console and run
+    """
     db = connect_db()
     with app.open_resource('sq_db.sql', mode='r') as f:
         db.cursor().executescript(f.read())
