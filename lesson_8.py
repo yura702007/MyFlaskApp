@@ -25,5 +25,14 @@ def connect_db():
     return conn
 
 
+def create_db():
+    """create tables in database"""
+    db = connect_db()
+    with app.open_resource('sq_db.sql', mode='r') as f:
+        db.cursor().executescript(f.read())
+    db.commit()
+    db.close()
+
+
 if __name__ == '__main__':
     pass
