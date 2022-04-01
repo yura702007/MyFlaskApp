@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, g
 
 # config
 DATABASE = '/tmp/flsite.db'
@@ -35,6 +35,13 @@ def create_db():
         db.cursor().executescript(f.read())
     db.commit()
     db.close()
+
+
+def get_db():
+    """Database connection if not already established"""
+    if not hasattr(g, 'link_db'):
+        g.link_db = connect_db()
+    return g.link_db
 
 
 if __name__ == '__main__':
