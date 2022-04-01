@@ -51,5 +51,11 @@ def close_db(error):
         g.link_db.close()
 
 
+@app.route('/index')
+def index():
+    db = get_db()
+    return render_template('index.html', menu=[])
+
+
 if __name__ == '__main__':
-    pass
+    app.run(debug=True)
