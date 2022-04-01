@@ -44,5 +44,12 @@ def get_db():
     return g.link_db
 
 
+@app.teardown_appcontext
+def close_db(error):
+    """Close the connection to the database if it was established"""
+    if hasattr(g, 'link_db'):
+        g.link_db.close()
+
+
 if __name__ == '__main__':
     pass
