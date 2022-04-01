@@ -52,11 +52,12 @@ def close_db(error):
         g.link_db.close()
 
 
-@app.route('/index')
+@app.route('/')
 def index():
     db = get_db()
-    return render_template('index.html', menu=[])
+    dbase = FDataBase(db)
+    return render_template('index.html', menu=dbase.get_menu())
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=DEBUG)
