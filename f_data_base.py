@@ -1,4 +1,6 @@
 import sqlite3
+import math
+import time
 
 
 class FDataBase:
@@ -16,3 +18,14 @@ class FDataBase:
         except:
             print('Error reading from db')
         return []
+
+    def add_post(self, title, text):
+        try:
+            tm = math.floor(time.time())
+            self.__cur.execute('INSERT INTO posts VALUES(NULL, ?, ?, ?)', (title, text, tm))
+            self.__db.commit()
+        except sqlite3.Error as e:
+            print(f'Ошибка добавления статьи {e}')
+            return False
+        return True
+
