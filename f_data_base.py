@@ -35,4 +35,5 @@ class FDataBase:
             if res: return res
         except sqlite3.Error as e:
             print(f'Ошибка получения статьи из БД {e}')
+        return []
 
