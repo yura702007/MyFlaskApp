@@ -8,15 +8,14 @@ class FDataBase:
         self.__db = db
         self.__cur = db.cursor()
 
-    def get_menu(self):
+    def getMenu(self):
         sql = '''SELECT * FROM mainmenu'''
         try:
             self.__cur.execute(sql)
-            res = self.__cur.fletchall()
-            if res:
-                return res
+            res = self.__cur.fetchall()
+            if res: return res
         except:
-            print('Error reading from db')
+            print("Ошибка чтения из БД")
         return []
 
     def add_post(self, title, text):
