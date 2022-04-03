@@ -56,7 +56,7 @@ def close_db(error):
 def index():
     db = get_db()
     dbase = FDataBase(db)
-    return render_template('index.html', menu=dbase.getMenu())
+    return render_template('index.html', menu=dbase.getMenu(), posts=dbase.getPostsAnonce())
 
 
 @app.route('/add_post', methods=['POST', 'GET'])
