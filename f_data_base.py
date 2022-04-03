@@ -32,8 +32,7 @@ class FDataBase:
         try:
             self.__cur.execute(f'SELECT id, title, text FROM posts ORDER BY time DESC')
             res = self.__cur.fetchall()
-            if res:
-                return res
+            if res: return res
         except sqlite3.Error as e:
             print(f'Ошибка получения статьи из БД {e}')
 
