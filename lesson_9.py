@@ -56,10 +56,10 @@ def close_db(error):
 def index():
     db = get_db()
     dbase = FDataBase(db)
-    return render_template('index.html', menu=dbase.get_menu())
+    return render_template('index.html', menu=dbase.getMenu())
 
 
-@app.route('/add_post', methods=['POST', ['GET']])
+@app.route('/add_post', methods=['POST', 'GET'])
 def add_post():
     db = get_db()
     dbase = FDataBase(db)
@@ -72,7 +72,7 @@ def add_post():
                 flash('Статья добавлена успешно', category='success')
         else:
             flash('Ошибка добавления статьи', category='error')
-    return render_template('add_post.html', menu=dbase.get_menu(), title='Добавление статьи')
+    return render_template('add_post.html', menu=dbase.getMenu(), title='Добавление статьи')
 
 
 if __name__ == '__main__':
