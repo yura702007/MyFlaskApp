@@ -20,8 +20,14 @@ class FDataBase:
 
     def add_post(self, title, text, url):
         try:
+            self.__cur.execute("SELECT COUNT() as 'count' FROM posts WHERE url LIKE ?", (url,))
+            res = self.__cur.fetchone()
+            if res['count'] > 0:
+                print('Статья с таким url уже существует')
+                return False
+
             tm = math.floor(time.time())
-            self.__cur.execute('INSERT INTO posts VALUES(NULL, ?, ?, ?)', (title, text, tm))
+            self.__cur.execute('INSERT INTO posts VALUES(NULL, ?, ?, ?, ?)', (title, text, url, tm))
             self.__db.commit()
         except sqlite3.Error as e:
             print(f'Ошибка добавления статьи {e}')
