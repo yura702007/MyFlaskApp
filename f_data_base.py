@@ -18,7 +18,7 @@ class FDataBase:
             print("Ошибка чтения из БД")
         return []
 
-    def add_post(self, title, text):
+    def add_post(self, title, text, url):
         try:
             tm = math.floor(time.time())
             self.__cur.execute('INSERT INTO posts VALUES(NULL, ?, ?, ?)', (title, text, tm))
