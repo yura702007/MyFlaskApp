@@ -50,7 +50,11 @@ class FDataBase:
             self.__cur.execute("SELECT title, text FROM posts WHERE url LIKE ? LIMIT 1", (alias,))
             res = self.__cur.fetchone()
             if res:
-                return res
+                base = url_for('static', filename=f'images/{alias}')
+                text = re.sub(r"(?P<tag><img\s+[^>]*src=)(?P<quote>[\"'])(?P<url>.+?)(?P=quote)>",
+                              "\\g<tag>" + base + "\\g<url>>",
+                              res['text'])
+                return res['title'], text
         except sqlite3.Error as e:
             print("Ошибка получения статьи из БД " + str(e))
 
