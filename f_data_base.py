@@ -43,9 +43,9 @@ class FDataBase:
             print(f'Ошибка получения статьи из БД {e}')
         return []
 
-    def getPost(self, postId):
+    def getPost(self, alias):
         try:
-            self.__cur.execute(f"SELECT title, text FROM posts WHERE id = {postId} LIMIT 1")
+            self.__cur.execute("SELECT title, text FROM posts WHERE url LIKE ? LIMIT 1", (alias,))
             res = self.__cur.fetchone()
             if res:
                 return res
