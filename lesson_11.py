@@ -10,7 +10,10 @@ menu = [
 
 @app.route('/')
 def index():
-    return render_template('index.html', menu=menu, post=[])
+    content = render_template('index.html', menu=menu, post=[])
+    res = make_response(content)
+    res.headers['Content-Type'] = 'text/plain'
+    return res
 
 
 if __name__ == '__main__':
