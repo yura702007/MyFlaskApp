@@ -18,6 +18,18 @@ app.config.from_object(__name__)
 # change value DATABASE placing database in current application directory
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsite.db')))
 
+dbase = None
+
+
+@app.before_request
+def before_request():
+    """
+    Establishing a database connection before executing a query
+    """
+    global dbase
+    db = get_db()
+    dbase = FDataBase(db)
+
 
 def connect_db():
     """connect with database"""
@@ -54,15 +66,11 @@ def close_db(error):
 
 @app.route('/')
 def index():
-    db = get_db()
-    dbase = FDataBase(db)
     return render_template('index.html', menu=dbase.getMenu(), posts=dbase.getPostsAnonce())
 
 
 @app.route('/add_post', methods=['POST', 'GET'])
 def add_post():
-    db = get_db()
-    dbase = FDataBase(db)
     if request.method == 'POST':
         if len(request.form['name']) > 4 and len(request.form['post']) > 10:
             res = dbase.add_post(request.form['name'], request.form['post'], request.form['url'])
@@ -77,8 +85,6 @@ def add_post():
 
 @app.route("/post/<alias>")
 def showPost(alias):
-    db = get_db()
-    dbase = FDataBase(db)
     title, post = dbase.getPost(alias)
     if not title:
         abort(404)
