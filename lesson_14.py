@@ -1,7 +1,8 @@
 import sqlite3
 import os
-from flask import Flask, render_template, request, g, flash, abort
+from flask import Flask, render_template, request, g, flash, abort, session, redirect, url_for
 from f_data_base import FDataBase
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # config
 DATABASE = '/tmp/flsite.db'
@@ -97,8 +98,23 @@ def login():
     return render_template('login.html', menu=dbase.getMenu(), title='Авторизация')
 
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        session.pop('_flashes', None)
+        if len(request.form['name']) > 4 and len(request.form['email']) > 4 and len(request.form['psw']) > 4 \
+                and request.form['psw'] == request.form['psw2']:
+            psw = request.form['psw']
+            _hash = generate_password_hash(psw)
+            res = dbase.addUser(request.form['name'], request.form['email'], _hash)
+            if res:
+                flash("Вы успешно зарегистрированы", "success")
+                return redirect(url_for('login'))
+            else:
+                flash("Ошибка при добавлении в БД", "error")
+        else:
+            flash("Неверно заполнены поля", "error")
+
     return render_template('register.html', menu=dbase.getMenu(), title='Регистрация')
 
 
