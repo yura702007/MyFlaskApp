@@ -92,5 +92,15 @@ def showPost(alias):
     return render_template('post.html', menu=dbase.getMenu(), title=title, post=post)
 
 
+@app.route('/login')
+def login():
+    return render_template('login.html', menu=dbase.getMenu(), title='Авторизация')
+
+
+@app.route('/register')
+def register():
+    return render_template('register.html', menu=dbase.getMenu(), title='Регистрация')
+
+
 if __name__ == '__main__':
     app.run(debug=DEBUG)
