@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, request, g, flash, abort, session, redirect, url_for
 from f_data_base import FDataBase
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, login_required
 from user_login import UserLogin
 
 # config
@@ -94,6 +94,7 @@ def add_post():
 
 
 @app.route("/post/<alias>")
+@login_required
 def showPost(alias):
     title, post = dbase.getPost(alias)
     if not title:
