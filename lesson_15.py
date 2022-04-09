@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template, request, g, flash, abort, session, redirect, url_for
 from f_data_base import FDataBase
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager
 
 # config
 DATABASE = '/tmp/flsite.db'
@@ -20,6 +21,7 @@ app.config.from_object(__name__)
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsite.db')))
 
 dbase = None
+login_manager = LoginManager(app)
 
 
 @app.before_request
