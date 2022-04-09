@@ -102,8 +102,15 @@ def showPost(alias):
     return render_template('post.html', menu=dbase.getMenu(), title=title, post=post)
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST', 'GET'])
 def login():
+    if request.method == 'POST':
+        user = dbase.getUserByEmail(request.form['email'])
+        if user and check_password_hash(user['psw'], request.form['psw']):
+            userlogin = UserLogin().create(user)
+            login_user(userlogin)
+            return redirect(url_for('index'))
+        flash('Неверная пара логин/пароль', 'error')
     return render_template('login.html', menu=dbase.getMenu(), title='Авторизация')
 
 
