@@ -28,7 +28,7 @@ login_manager = LoginManager(app)
 @login_manager.user_loader
 def load_user(user_id):
     print('load user')
-    return UserLogin.from_db(user_id, dbase)
+    return UserLogin().from_db(user_id, dbase)
 
 
 @app.before_request
