@@ -109,7 +109,8 @@ def login():
         user = dbase.getUserByEmail(request.form['email'])
         if user and check_password_hash(user['psw'], request.form['psw']):
             userlogin = UserLogin().create(user)
-            login_user(userlogin)
+            rm = True if request.form.get('remainme') else False
+            login_user(userlogin, remember=rm)
             return redirect(url_for('index'))
         flash('Неверная пара логин/пароль', 'error')
     return render_template('login.html', menu=dbase.getMenu(), title='Авторизация')
