@@ -108,6 +108,8 @@ def showPost(alias):
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('profile'))
     if request.method == 'POST':
         user = dbase.getUserByEmail(request.form['email'])
         if user and check_password_hash(user['psw'], request.form['psw']):
