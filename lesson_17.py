@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from flask import Flask, render_template, request, g, flash, abort, session, redirect, url_for
+from flask import Flask, render_template, request, g, flash, abort, session, redirect, url_for, make_response
 from f_data_base import FDataBase
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
@@ -156,6 +156,17 @@ def logout():
     logout_user()
     flash('Вы вышли из аккаунта', 'success')
     return redirect(url_for('login'))
+
+
+@app.route('/userava')
+@login_required
+def userava():
+    img = current_user.getAvatar(app)
+    if not img:
+        return ''
+    h = make_response(img)
+    h.headers['Content-Type'] = 'image/png'
+    return h
 
 
 if __name__ == '__main__':
