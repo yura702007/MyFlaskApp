@@ -145,9 +145,7 @@ def register():
 @app.route('/profile')
 @login_required
 def profile():
-    return f"""
-<a href="{url_for('logout')}">Выйти из профиля</a>
-user info: {current_user.get_id()}"""
+    return render_template('profile.html', menu=dbase.getMenu(), title='Профиль')
 
 
 @app.route('/logout')
