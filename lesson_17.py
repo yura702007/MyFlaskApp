@@ -169,5 +169,25 @@ def userava():
     return h
 
 
+@app.route('/upload', methods=['POST', 'GET'])
+@login_required
+def upload():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and current_user.verifyExt(file.filename):
+            try:
+                img = file.read()
+                res = dbase.updateUserAvatar(img, current_user.get_id())
+                if not res:
+                    flash("Ошибка обновления аватара", "error")
+                    return redirect(url_for('profile'))
+                flash("Аватар обновлен", "success")
+            except FileNotFoundError as e:
+                flash("Ошибка чтения файла", "error")
+        else:
+            flash("Ошибка обновления аватара", "error")
+        return redirect(url_for('profile'))
+
+
 if __name__ == '__main__':
     app.run(debug=DEBUG, port=4242)
