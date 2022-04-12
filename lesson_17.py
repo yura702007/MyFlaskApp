@@ -12,6 +12,7 @@ DEBUG = True
 SECRET_KEY = 'fdgfh78@#5?>gfhf89dx,v06k'
 USERNAME = 'admin'
 PASSWORD = '123'
+MAX_CONTENT_LENGTH = 1024 * 1024
 
 # create web_application
 app = Flask(__name__)
