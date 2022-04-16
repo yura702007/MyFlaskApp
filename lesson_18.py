@@ -5,6 +5,7 @@ from f_data_base import FDataBase
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from user_login import UserLogin
+from form import LoginForm
 
 # config
 DATABASE = '/tmp/flsite.db'
