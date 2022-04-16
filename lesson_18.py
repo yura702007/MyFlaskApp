@@ -5,7 +5,7 @@ from f_data_base import FDataBase
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from user_login import UserLogin
-from form import LoginForm
+from forms import LoginForm
 
 # config
 DATABASE = '/tmp/flsite.db'
@@ -110,16 +110,7 @@ def showPost(alias):
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('profile'))
-    if request.method == 'POST':
-        user = dbase.getUserByEmail(request.form['email'])
-        if user and check_password_hash(user['psw'], request.form['psw']):
-            userlogin = UserLogin().create(user)
-            rm = True if request.form.get('remainme') else False
-            login_user(userlogin, remember=rm)
-            return redirect(request.args.get('next') or url_for('profile'))
-        flash('Неверная пара логин/пароль', 'error')
+    form = LoginForm()
     return render_template('login.html', menu=dbase.getMenu(), title='Авторизация')
 
 
