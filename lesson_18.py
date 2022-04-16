@@ -111,7 +111,7 @@ def showPost(alias):
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     form = LoginForm()
-    return render_template('login.html', menu=dbase.getMenu(), title='Авторизация')
+    return render_template('login.html', menu=dbase.getMenu(), title='Авторизация', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
