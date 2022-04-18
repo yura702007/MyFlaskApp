@@ -121,6 +121,8 @@ def login():
             login_user(userlogin, remember=rm)
             return redirect(request.args.get('next') or url_for('profile'))
         flash('Неверная пара логин/пароль', 'error')
+    form.psw.flags.__delattr__('minlength')
+    form.psw.flags.__delattr__('maxlength')
     return render_template('login.html', menu=dbase.getMenu(), title='Авторизация', form=form)
 
 
