@@ -24,6 +24,8 @@ app.config.from_object(__name__)
 # change value DATABASE placing database in current application directory
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsite.db')))
 
+app.register_blueprint(admin, url_prefix='/admin')
+
 dbase = None
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
