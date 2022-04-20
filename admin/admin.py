@@ -5,6 +5,7 @@ admin = Blueprint('admin', __name__, template_folder='templates', static_folder=
 
 MENU = [
     {'url': '.index', 'title': 'Панель'},
+    {'url': '.list_pubs', 'title': 'Список статей'},
     {'url': '.logout', 'title': 'Выйти'}
 ]
 
