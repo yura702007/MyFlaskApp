@@ -4,7 +4,7 @@
 {{ super() }}
 <h1>{{title}}</h1>
 <ul class="list-posts">
-    {% for p in list %}
+    {% for p in lst %}
     <li>
         <p class="title"><a href="{{ url_for('showPost', alias=p.url)}}">{{p.title}}</a></p>
         <p class="annonce">{{ p.text[:50] | striptags }}</p>
