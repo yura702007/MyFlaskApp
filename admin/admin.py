@@ -29,3 +29,11 @@ def login():
         else:
             flash('Неверная пара логин/пароль', 'error')
     return render_template('admin/login.html', title='Админ-панель')
+
+
+@admin.route('/logout', methods=['POST', 'GET'])
+def logout():
+    if not isLogged():
+        return redirect(url_for('.login'))
+    logout_admin()
+    return redirect(url_for('.login'))
