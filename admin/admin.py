@@ -63,7 +63,7 @@ def logout():
     return redirect(url_for('.login'))
 
 
-@admin.route('/list-pubs')
+@admin.route('/list_pubs')
 def list_pubs():
     if not isLogged():
         return redirect(url_for('.login'))
