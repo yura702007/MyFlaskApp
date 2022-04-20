@@ -3,6 +3,12 @@ from flask import Blueprint, request, redirect, url_for, flash, render_template,
 admin = Blueprint('admin', __name__, template_folder='templates', static_folder='static')
 
 
+MENU = [
+    {'url': '.index', 'title': 'Панель'},
+    {'url': '.logout', 'title': 'Выйти'}
+]
+
+
 def login_admin():
     session['admin_logged'] = 1
 
