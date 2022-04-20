@@ -73,7 +73,7 @@ def list_pubs():
         try:
             cur = db.cursor()
             cur.execute(f'SELECT title, text, url FROM posts')
-            lst = cur.fletchall()
+            lst = cur.fetchall()
         except sqlite3.Error as e:
             print(f'Ошибка получения статей из БД {e}')
-    return render_template('admin/list_pubs', title='Список статей', menu=MENU, lst=lst)
+    return render_template('admin/list_pubs.html', title='Список статей', menu=MENU, lst=lst)
