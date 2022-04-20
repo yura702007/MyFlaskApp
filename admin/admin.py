@@ -4,7 +4,15 @@ admin = Blueprint('admin', __name__, template_folder='templates', static_folder=
 
 
 def login_admin():
-    session['admin_logget'] = 1
+    session['admin_logged'] = 1
+
+
+def isLogged():
+    return True if session.get('admin_logged') else False
+
+
+def logout_admin():
+    session.pop('admin_logged', None)
 
 
 @admin.route('/')
