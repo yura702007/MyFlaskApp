@@ -24,7 +24,7 @@ def logout_admin():
 @admin.route('/')
 def index():
     if not isLogged():
-        return redirect(url_for('login'))
+        return redirect(url_for('.login'))
     return render_template('admin/index.html', menu=MENU, title='Админ-панель')
 
 
