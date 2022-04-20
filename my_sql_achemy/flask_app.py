@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
+from flask import Flask, render_template
 from datetime import datetime
 
 app = Flask(__name__)
@@ -27,6 +27,11 @@ class Profiles(db.Model):
 
     def __repr__(self):
         return f'<profiles {self.col_id}>'
+
+
+@app.route('/register', methods =['POST', 'GET'])
+def register():
+    return render_template('register.html', title='Регистрация')
 
 
 if __name__ == '__main__':
