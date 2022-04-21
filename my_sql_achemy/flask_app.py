@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 app = Flask(__name__)
@@ -36,6 +37,20 @@ def index():
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    if request.method == 'POST':
+        # здесь должна быть проверка корректности введенных данных
+        try:
+            h = generate_password_hash(request.form['psw'])
+            u = Users(user_email=request.form['email'], psw=h)
+            db.session.add(u)
+            db.session.flush()
+            p = Profiles(user_name=request.form['name'], age=request.form['age'],
+                         city=request.form['city'], user_id=u.user_id)
+            db.session.add(p)
+            db.session.commit()
+        except:
+            db.session.rollback()
+            print('Ошибка добавления в БД')
     return render_template('register.html', title='Регистрация')
 
 
