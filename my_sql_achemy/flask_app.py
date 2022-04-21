@@ -29,7 +29,12 @@ class Profiles(db.Model):
         return f'<profiles {self.col_id}>'
 
 
-@app.route('/register', methods =['POST', 'GET'])
+@app.route('/')
+def index():
+    return render_template('index.html', title='Главная')
+
+
+@app.route('/register', methods=['POST', 'GET'])
 def register():
     return render_template('register.html', title='Регистрация')
 
